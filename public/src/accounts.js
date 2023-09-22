@@ -3,8 +3,8 @@ function findAccountById(accounts, id) {
 }
 
 function sortAccountsByLastName(accounts) {
-  return accounts.sort((a, b) => (
-    a.name.last.toLowerCase() < b.name.last.toLowerCase() ? -1 : 1
+  return accounts.sort((nameA, nameB) => (
+    nameA.name.last.toLowerCase() < nameB.name.last.toLowerCase() ? -1 : 1
   ));
 }
 

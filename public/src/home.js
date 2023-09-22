@@ -59,13 +59,19 @@ function getMostPopularBooks(books) {
 }
 
 function getMostPopularAuthors(books = [], authors = []) {
+  // Helper function to get an author's full name by ID
+  function getAuthorName(authorId) {
+    const author = authors.find((author) => author.id === authorId);
+    return `${author.name.first} ${author.name.last}`;
+  }
+
   const mostPopularBooksSliced = books
     .sort((bookA, bookB) => bookB.borrows.length - bookA.borrows.length)
     .slice(0, 5);
   const result = mostPopularBooksSliced.map((book) => {
-    const author = authors.find((author) => author.id === book.authorId);
+    const authorName = getAuthorName(book.authorId);
     return {
-      name: `${author.name.first} ${author.name.last}`,
+      name: authorName,
       count: book.borrows.length,
     };
   });
